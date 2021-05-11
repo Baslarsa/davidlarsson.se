@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
+import ExperiencePage from "../pages/ExperiencePage";
 
 const Routes = () => {
     return (
@@ -10,7 +11,7 @@ const Routes = () => {
                 <AboutPage />
             </Route>
             <Route path="/experience">
-                <div>experience</div>
+                <ExperiencePage />
             </Route>
             <Route path="/contact">
                 <div>contact</div>
@@ -18,6 +19,7 @@ const Routes = () => {
             <Route exact path="/home">
                 <HomePage />
             </Route>
+
             <Route exact path="/">
                 <Redirect to="/home" />
             </Route>
