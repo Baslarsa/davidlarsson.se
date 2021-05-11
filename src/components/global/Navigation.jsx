@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import { Link, useLocation, matchPath } from "react-router-dom";
 import { Icon } from "../../icons/";
-import { COLORS } from "../../constants/colors";
 
 const styles = {
     navWrapper: css`
@@ -19,18 +18,17 @@ const styles = {
     `,
     navIconActive: css`
         transition: all 0.3s ease;
-        fill: ${COLORS.MAIN_BLACK};
+        opacity: 1;
     `,
     navIcon: css`
         transition: all 0.3s ease;
-        fill: ${COLORS.GRAY};
+        opacity: 0.4;
         &:hover {
-            fill: ${COLORS.MAIN_BLACK};
+            opacity: 0.9;
         }
     `,
     iconWrapActive: css`
         transition: all 0.3s ease;
-        border-bottom: 1px solid ${COLORS.MAIN};
     `,
     iconWrapInActive: css`
         transition: all 0.3s ease;
@@ -59,7 +57,7 @@ const menuItems = [
 
 const Navigation = () => {
     const location = useLocation();
-
+    const theme = useTheme();
     const isPathActive = (path) => Boolean(matchPath(location.pathname, path));
 
     return (
@@ -71,7 +69,13 @@ const Navigation = () => {
                         key={key}
                         css={[
                             isPathActive(linkPath)
-                                ? styles.iconWrapActive
+                                ? [
+                                      styles.iconWrapActive,
+                                      {
+                                          borderBottom: `1px solid
+                                                ${theme.colors.primary}`,
+                                      },
+                                  ]
                                 : styles.iconWrapInActive,
                         ]}
                     >
@@ -80,6 +84,9 @@ const Navigation = () => {
                                 isPathActive(linkPath)
                                     ? styles.navIconActive
                                     : styles.navIcon,
+                                {
+                                    fill: theme.colors.text,
+                                },
                             ]}
                         />
                     </Link>

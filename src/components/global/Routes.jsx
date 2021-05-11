@@ -14,7 +14,7 @@ const Routes = () => {
                 <div>contact</div>
             </Route>
             <Route exact path="/home">
-                <div>home</div>
+                <div css={(theme) => theme.colors.text}>home</div>
             </Route>
             <Route exact path="/">
                 <Redirect to="/home" />

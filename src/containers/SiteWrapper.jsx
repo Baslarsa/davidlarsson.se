@@ -4,7 +4,7 @@ import React from "react";
 import { css } from "@emotion/react";
 import Navigation from "../components/global/Navigation";
 import { Icon } from "../icons";
-import { COLORS } from "../constants/colors";
+import DarkModeToggle from "../components/global/DarkModeToggle";
 
 const styles = {
     wrapper: css`
@@ -15,7 +15,6 @@ const styles = {
         grid: 1fr / 4rem 1fr;
     `,
     navContainer: css`
-        border: 1px solid blue;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,34 +22,32 @@ const styles = {
         padding: 0.5rem 0;
     `,
     content: css`
-        border: 1px solid green;
+        border: 1px solid black;
     `,
     siteLogo: css`
         padding: 0.5rem;
     `,
-    nightToggle: css`
-        padding: 0.5rem;
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 0.5rem;
-        svg {
-            margin: 0.2rem 0 0 0;
-        }
-    `,
 };
 
-const SiteWrapper = ({ children }) => {
+const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
     return (
-        <div css={styles.wrapper}>
+        <div
+            css={(theme) => [
+                { backgroundColor: theme.colors.background },
+                styles.wrapper,
+            ]}
+        >
             <div css={styles.navContainer}>
                 <a css={styles.siteLogo} href="/home">
-                    <Icon.MainLogo fill={COLORS.MAIN_BLACK} />
+                    <Icon.MainLogo
+                        css={(theme) => ({ fill: theme.colors.text })}
+                    />
                 </a>
                 <Navigation />
-                <div css={styles.nightToggle}>
-                    <Icon.MoonIcon fill={COLORS.MAIN_BLACK} />
-                    <Icon.ToggleIcon fill="none" stroke={COLORS.MAIN_BLACK} />
-                </div>
+                <DarkModeToggle
+                    onChange={onThemeChange}
+                    toggleState={isDarkMode}
+                />
             </div>
             <div css={styles.content}>{children}</div>
         </div>
