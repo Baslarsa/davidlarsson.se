@@ -2,7 +2,8 @@ import React, { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { Link, useLocation, matchPath } from "react-router-dom";
-import { Icon } from "../../icons/nav";
+import { Icon } from "../../icons/";
+import { COLORS } from "../../constants/colors";
 
 const styles = {
     navWrapper: css`
@@ -12,15 +13,28 @@ const styles = {
         align-items: center;
         box-sizing: border-box;
         a {
-            margin: 0.5rem 0;
-            padding: 0.5rem;
+            padding: 0.2rem 0;
+            margin: 0.6rem 0;
         }
     `,
     navIconActive: css`
-        fill: black;
+        transition: all 0.3s ease;
+        fill: ${COLORS.MAIN_BLACK};
     `,
     navIcon: css`
-        fill: gray;
+        transition: all 0.3s ease;
+        fill: ${COLORS.GRAY};
+        &:hover {
+            fill: ${COLORS.MAIN_BLACK};
+        }
+    `,
+    iconWrapActive: css`
+        transition: all 0.3s ease;
+        border-bottom: 1px solid ${COLORS.MAIN};
+    `,
+    iconWrapInActive: css`
+        transition: all 0.3s ease;
+        border-bottom: 1px solid transparent;
     `,
 };
 
@@ -51,8 +65,16 @@ const Navigation = () => {
     return (
         <div>
             <nav css={styles.navWrapper}>
-                {menuItems.map(({ linkPath, Icon, key, exact }) => (
-                    <Link to={linkPath} key={key}>
+                {menuItems.map(({ linkPath, Icon, key }) => (
+                    <Link
+                        to={linkPath}
+                        key={key}
+                        css={[
+                            isPathActive(linkPath)
+                                ? styles.iconWrapActive
+                                : styles.iconWrapInActive,
+                        ]}
+                    >
                         <Icon
                             css={[
                                 isPathActive(linkPath)

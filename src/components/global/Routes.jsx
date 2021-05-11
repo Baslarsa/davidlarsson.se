@@ -13,9 +13,11 @@ const Routes = () => {
             <Route path="/contact">
                 <div>contact</div>
             </Route>
-            <Redirect from="/" to="/home" />
             <Route exact path="/home">
                 <div>home</div>
+            </Route>
+            <Route exact path="/">
+                <Redirect to="/home" />
             </Route>
         </Switch>
     );

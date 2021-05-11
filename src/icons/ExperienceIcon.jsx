@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeIcon = ({ ...props }) => {
+const ExperienceIcon = ({ ...props }) => {
     return (
         <svg
             width="20"
@@ -14,4 +14,4 @@ const HomeIcon = ({ ...props }) => {
     );
 };
 
-export default HomeIcon;
+export default ExperienceIcon;
