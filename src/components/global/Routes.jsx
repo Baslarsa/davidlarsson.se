@@ -1,11 +1,13 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import AboutPage from "../pages/AboutPage";
 
 const Routes = () => {
     return (
         <Switch>
             <Route path="/about">
-                <div>about</div>
+                <AboutPage />
             </Route>
             <Route path="/experience">
                 <div>experience</div>
@@ -14,7 +16,7 @@ const Routes = () => {
                 <div>contact</div>
             </Route>
             <Route exact path="/home">
-                <div css={(theme) => theme.colors.text}>home</div>
+                <HomePage />
             </Route>
             <Route exact path="/">
                 <Redirect to="/home" />

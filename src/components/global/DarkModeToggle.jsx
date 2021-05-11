@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import { Icon } from "../../icons";
@@ -21,14 +21,15 @@ const styles = {
         width: 1.5rem;
         border-radius: 0.6rem;
         box-sizing: border-box;
-        transition: all 0.2s ease;
+        transition: all 0.5s ease-in-out;
     `,
     toggleSwitch: css`
-        margin: 0.1rem;
-        width: 0.3rem;
-        height: 0.3rem;
+        margin: 0.1rem 0.5rem 0.1rem 0.1rem;
+        width: 0.5rem;
+        height: 0.5rem;
         border-radius: 50%;
-        transition: all 0.2s ease;
+        transition: all 0.5s ease-in-out;
+        box-sizing: border-box;
     `,
     toggleOn: css`
         display: flex;
@@ -36,6 +37,7 @@ const styles = {
     `,
     noBg: css`
         background-color: white;
+        margin: 0.1rem 0.1rem 0.1rem 0.5rem;
     `,
 };
 const DarkModeToggle = ({ onChange, toggleState }) => {

@@ -1,10 +1,10 @@
 import React from "react";
 
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+import { css, useTheme } from "@emotion/react";
 import Navigation from "../components/global/Navigation";
-import { Icon } from "../icons";
 import DarkModeToggle from "../components/global/DarkModeToggle";
+import { Icon } from "../icons";
 
 const styles = {
     wrapper: css`
@@ -21,8 +21,18 @@ const styles = {
         justify-content: space-between;
         padding: 0.5rem 0;
     `,
-    content: css`
-        border: 1px solid black;
+    socialWrapper: css`
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        right: 0;
+        top: 0;
+        height: 4rem;
+        margin: 0 2rem;
+        a {
+            margin: 0 1rem;
+        }
     `,
     siteLogo: css`
         padding: 0.5rem;
@@ -30,27 +40,38 @@ const styles = {
 };
 
 const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
+    const theme = useTheme();
     return (
-        <div
-            css={(theme) => [
-                { backgroundColor: theme.colors.background },
-                styles.wrapper,
-            ]}
-        >
-            <div css={styles.navContainer}>
-                <a css={styles.siteLogo} href="/home">
-                    <Icon.MainLogo
-                        css={(theme) => ({ fill: theme.colors.text })}
-                    />
+        <>
+            <div css={styles.socialWrapper}>
+                <a href="www.google.com">
+                    <Icon.GithubIcon css={{ fill: theme.colors.text }} />
                 </a>
-                <Navigation />
-                <DarkModeToggle
-                    onChange={onThemeChange}
-                    toggleState={isDarkMode}
-                />
+                <a href="www.google.com">
+                    <Icon.LinkedinIcon css={{ fill: theme.colors.text }} />
+                </a>
             </div>
-            <div css={styles.content}>{children}</div>
-        </div>
+            <div
+                css={(theme) => [
+                    { backgroundColor: theme.colors.background },
+                    styles.wrapper,
+                ]}
+            >
+                <div css={styles.navContainer}>
+                    <a css={styles.siteLogo} href="/home">
+                        <Icon.MainLogo
+                            css={(theme) => ({ fill: theme.colors.text })}
+                        />
+                    </a>
+                    <Navigation />
+                    <DarkModeToggle
+                        onChange={onThemeChange}
+                        toggleState={isDarkMode}
+                    />
+                </div>
+                <div css={styles.content}>{children}</div>
+            </div>
+        </>
     );
 };
 

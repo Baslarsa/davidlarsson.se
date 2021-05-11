@@ -5,6 +5,8 @@ import HomeIcon from "./HomeIcon";
 import MainLogo from "./MainLogo";
 import MoonIcon from "./MoonIcon";
 import ToggleIcon from "./ToggleIcon";
+import LinkedinIcon from "./LinkedinIcon";
+import GithubIcon from "./GithubIcon";
 
 const Icons = {
     AboutIcon,
@@ -14,6 +16,8 @@ const Icons = {
     MainLogo,
     MoonIcon,
     ToggleIcon,
+    LinkedinIcon,
+    GithubIcon,
 };
 
 export const Icon = { ...Icons };
