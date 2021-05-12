@@ -7,6 +7,7 @@ import MoonIcon from "./MoonIcon";
 import ToggleIcon from "./ToggleIcon";
 import LinkedinIcon from "./LinkedinIcon";
 import GithubIcon from "./GithubIcon";
+import ArrowIcon from "./ArrowIcon";
 
 const Icons = {
     AboutIcon,
@@ -18,6 +19,7 @@ const Icons = {
     ToggleIcon,
     LinkedinIcon,
     GithubIcon,
+    ArrowIcon,
 };
 
 export const Icon = { ...Icons };

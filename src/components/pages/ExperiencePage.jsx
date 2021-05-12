@@ -10,9 +10,9 @@ import {
 } from "react-router-dom";
 import PageContentWrapper from "../../containers/PageContentWrapper";
 import backgroundImage from "../../images/surfer.jpg";
+import ExpandableList from "../global/ExpandableList";
 import Label from "../global/text/Label";
 import MainTitle from "../global/text/MainTitle";
-import SubTitle from "../global/text/SubTitle";
 
 const styles = {
     wrapper: css`
@@ -45,9 +45,10 @@ const styles = {
     tabList: css`
         display: flex;
         width: 100%;
+        margin-bottom: 1rem;
         a {
             text-decoration: none;
-            margin: 0.5rem 1rem;
+            margin: 0.5rem 1.5rem 0.5rem 0rem;
         }
     `,
     active: css`
@@ -71,6 +72,23 @@ const TAB_LIST = [
     { name: "Internships", key: "internship", link: "/internships" },
 ];
 
+const EDUCATIONS = [
+    {
+        title: "Musikmakarna Songwriters Academy",
+        duration: "2015-2017",
+        location: "Örnsköldsvik",
+        description:
+            "My biggest interests in life is sports, music, tech and food. I played hockey for my entire childhood and realized I wasn’t going to be a hockey pro. I then tried music, and realized it wasn’t a business for me. I guess chocolate making on Mondelez counts for food, so apparently there’s only tech left. Let's start with frontend development.",
+    },
+    {
+        title: "Frontend Development",
+        duration: "2019-2021",
+        location: "IT-Högskolan, Stockholm",
+        description:
+            "My biggest interests in life is sports, music, tech and food. I played hockey for my entire childhood and realized I wasn’t going to be a hockey pro. I then tried music, and realized it wasn’t a business for me. I guess chocolate making on Mondelez counts for food, so apparently there’s only tech left. Let's start with frontend development.",
+    },
+];
+
 const AboutPage = () => {
     const theme = useTheme();
     const match = useRouteMatch();
@@ -84,7 +102,6 @@ const AboutPage = () => {
                 <div>
                     <MainTitle>WHAT I'VE</MainTitle>
                     <MainTitle>DONE</MainTitle>
-                    <SubTitle>so far.</SubTitle>
                 </div>
                 <div>
                     <p>
@@ -131,15 +148,28 @@ const AboutPage = () => {
                             </Link>
                         ))}
                     </div>
-                    <div css={styles.tabContent}>
+                    <div
+                        css={[styles.tabContent, { color: theme.colors.text }]}
+                    >
                         <Switch>
                             <Route path={`${match.path}/education`}>
-                                Education
+                                <ExpandableList
+                                    title="What I've studied"
+                                    list={EDUCATIONS}
+                                />
                             </Route>
                             <Route path={`${match.path}/internships`}>
-                                internships
+                                <ExpandableList
+                                    title="Where I've done my internships"
+                                    list={EDUCATIONS}
+                                />
                             </Route>
-                            <Route path={`${match.path}`}>Experience</Route>
+                            <Route path={`${match.path}`}>
+                                <ExpandableList
+                                    title="My recent positions"
+                                    list={EDUCATIONS}
+                                />
+                            </Route>
                         </Switch>
                     </div>
                 </Router>

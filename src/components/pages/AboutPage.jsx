@@ -2,6 +2,9 @@
 import { css, useTheme } from "@emotion/react";
 import PageContentWrapper from "../../containers/PageContentWrapper";
 import backgroundImage from "../../images/davidlarsson-bw.jpg";
+import Body from "../global/text/Body";
+import MainTitle from "../global/text/MainTitle";
+import SubTitle from "../global/text/SubTitle";
 
 const styles = {
     wrapper: css`
@@ -44,8 +47,8 @@ const AboutPage = () => {
                     { backgroundColor: theme.colors.backdrop },
                 ]}
             >
-                <h1>THE</h1>
-                <h1>STORY</h1>
+                <MainTitle>THE</MainTitle>
+                <MainTitle>STORY</MainTitle>
                 <br />
                 <p>
                     Started out as a dreamer with a vision of becoming a hockey
@@ -81,17 +84,16 @@ const AboutPage = () => {
                 </p>
             </div>
             <div css={styles.imageContainer}>
-                <h2>David Larsson</h2>
-                <br />
-                <p>
+                <SubTitle>David Larsson</SubTitle>
+                <Body>
                     <strong>born:</strong> 1990-09-28 in Fagersta
-                </p>
-                <p>
+                </Body>
+                <Body>
                     <strong>likes:</strong> Music, sports, food and tech stuff
-                </p>
-                <p>
+                </Body>
+                <Body>
                     <strong>family:</strong> 9 siblings and a girlfriend
-                </p>
+                </Body>
             </div>
         </PageContentWrapper>
     );
