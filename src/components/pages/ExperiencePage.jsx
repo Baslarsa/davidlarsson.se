@@ -13,6 +13,7 @@ import backgroundImage from "../../images/surfer.jpg";
 import ExpandableList from "../global/ExpandableList";
 import Label from "../global/text/Label";
 import MainTitle from "../global/text/MainTitle";
+import Fade from "react-reveal/Fade";
 
 const styles = {
     wrapper: css`
@@ -99,21 +100,25 @@ const AboutPage = () => {
             css={[styles.wrapper, { color: theme.colors.text }]}
         >
             <div css={styles.imageContainer}>
-                <div>
-                    <MainTitle>WHAT I'VE</MainTitle>
-                    <MainTitle>DONE</MainTitle>
-                </div>
-                <div>
-                    <p>
-                        My biggest interests in life is sports, music, tech and
-                        food. I played hockey for my entire childhood and
-                        realized I wasn’t going to be a hockey pro. I then tried
-                        music, and realized it wasn’t a business for me. I guess
-                        chocolate making on Mondelez counts for food, so
-                        apparently there’s only tech left. Let’s start with
-                        frontend development.{" "}
-                    </p>
-                </div>
+                <Fade left delay={200}>
+                    <div>
+                        <MainTitle>WHAT I'VE</MainTitle>
+                        <MainTitle>DONE</MainTitle>
+                    </div>
+                </Fade>
+                <Fade left delay={600}>
+                    <div>
+                        <p>
+                            My biggest interests in life is sports, music, tech
+                            and food. I played hockey for my entire childhood
+                            and realized I wasn’t going to be a hockey pro. I
+                            then tried music, and realized it wasn’t a business
+                            for me. I guess chocolate making on Mondelez counts
+                            for food, so apparently there’s only tech left.
+                            Let’s start with frontend development.{" "}
+                        </p>
+                    </div>
+                </Fade>
             </div>
             <div
                 css={[
@@ -122,55 +127,61 @@ const AboutPage = () => {
                 ]}
             >
                 <Router>
-                    <div css={styles.tabList}>
-                        {TAB_LIST.map(({ link, key, name }) => (
-                            <Link
-                                to={match.url + link}
-                                key={key}
-                                css={[
-                                    activeTab === key
-                                        ? [
-                                              styles.active,
-                                              {
-                                                  borderBottom: `1px solid ${theme.colors.primary}`,
-                                              },
-                                          ]
-                                        : [
-                                              styles.inactive,
-                                              {
-                                                  borderBottom: `1px solid ${theme.colors.backdrop}`,
-                                              },
-                                          ],
-                                ]}
-                                onClick={() => setActiveTab(key)}
-                            >
-                                <Label color={theme.colors.text}>{name}</Label>
-                            </Link>
-                        ))}
-                    </div>
+                    <Fade top>
+                        <div css={styles.tabList}>
+                            {TAB_LIST.map(({ link, key, name }) => (
+                                <Link
+                                    to={match.url + link}
+                                    key={key}
+                                    css={[
+                                        activeTab === key
+                                            ? [
+                                                  styles.active,
+                                                  {
+                                                      borderBottom: `1px solid ${theme.colors.primary}`,
+                                                  },
+                                              ]
+                                            : [
+                                                  styles.inactive,
+                                                  {
+                                                      borderBottom: `1px solid ${theme.colors.backdrop}`,
+                                                  },
+                                              ],
+                                    ]}
+                                    onClick={() => setActiveTab(key)}
+                                >
+                                    <Label color={theme.colors.text}>
+                                        {name}
+                                    </Label>
+                                </Link>
+                            ))}
+                        </div>
+                    </Fade>
                     <div
                         css={[styles.tabContent, { color: theme.colors.text }]}
                     >
-                        <Switch>
-                            <Route path={`${match.path}/education`}>
-                                <ExpandableList
-                                    title="What I've studied"
-                                    list={EDUCATIONS}
-                                />
-                            </Route>
-                            <Route path={`${match.path}/internships`}>
-                                <ExpandableList
-                                    title="Where I've done my internships"
-                                    list={EDUCATIONS}
-                                />
-                            </Route>
-                            <Route path={`${match.path}`}>
-                                <ExpandableList
-                                    title="My recent positions"
-                                    list={EDUCATIONS}
-                                />
-                            </Route>
-                        </Switch>
+                        <Fade delay={300}>
+                            <Switch>
+                                <Route path={`${match.path}/education`}>
+                                    <ExpandableList
+                                        title="What I've studied"
+                                        list={EDUCATIONS}
+                                    />
+                                </Route>
+                                <Route path={`${match.path}/internships`}>
+                                    <ExpandableList
+                                        title="Where I've done my internships"
+                                        list={EDUCATIONS}
+                                    />
+                                </Route>
+                                <Route path={`${match.path}`}>
+                                    <ExpandableList
+                                        title="My recent positions"
+                                        list={EDUCATIONS}
+                                    />
+                                </Route>
+                            </Switch>
+                        </Fade>
                     </div>
                 </Router>
             </div>

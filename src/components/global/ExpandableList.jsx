@@ -2,7 +2,7 @@ import Title from "./text/Title";
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import { Icon } from "../../icons";
-import BodyBold from "./text/BodyStrong";
+import BodyBold from "./text/BodyBold";
 import Body from "./text/Body";
 import { useState } from "react";
 
@@ -16,6 +16,7 @@ const styles = {
         grid: 1fr / 3rem 3fr 1fr;
         padding: 0.5rem 0;
         align-items: center;
+        cursor: pointer;
     `,
     rowWrap: css`
         margin: 1rem 0;
@@ -29,6 +30,8 @@ const styles = {
         align-items: center;
         padding: 0.5rem;
         height: 100%;
+        transform: scale(1);
+        transition: all 0.3s;
     `,
     expandableRow: css`
         padding: 0;
@@ -42,6 +45,9 @@ const styles = {
         visibility: visible;
         max-height: 500px;
         padding: 1rem 1rem;
+    `,
+    rotate: css`
+        transform: scaleY(-1);
     `,
 };
 
@@ -63,10 +69,17 @@ const ExpandableList = ({ list, title }) => {
             <div css={styles.rowWrap}>
                 {list.map((item) => (
                     <>
-                        <div css={styles.row} key={item.title}>
+                        <div
+                            css={styles.row}
+                            key={item.title}
+                            onClick={() => toggleRow(item.title)}
+                        >
                             <div
-                                css={styles.icon}
-                                onClick={() => toggleRow(item.title)}
+                                css={[
+                                    styles.icon,
+                                    openRow.includes(item.title) &&
+                                        styles.rotate,
+                                ]}
                             >
                                 <Icon.ArrowIcon
                                     css={{

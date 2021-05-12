@@ -3,6 +3,7 @@ import { css, useTheme } from "@emotion/react";
 import PageContentWrapper from "../../containers/PageContentWrapper";
 import backgroundImage from "../../images/davidlarsson-bw.jpg";
 import HeroLogo from "../../images/davidlarsson-hero-image";
+import Fade from "react-reveal/Fade";
 
 const styles = {
     wrapper: css`
@@ -40,31 +41,35 @@ const styles = {
 const HomePage = () => {
     const theme = useTheme();
     return (
-        <PageContentWrapper
-            css={[styles.wrapper, { color: theme.colors.text }]}
-        >
-            <div
-                css={[
-                    styles.whiteSpace,
-                    { backgroundColor: theme.colors.backdrop },
-                ]}
+        <Fade>
+            <PageContentWrapper
+                css={[styles.wrapper, { color: theme.colors.text }]}
             >
-                <div css={styles.description}>
-                    <p>
-                        <span style={{ fontStyle: "normal" }}>
-                            <strong>[dej-vid, larsawn]</strong>
-                        </span>{" "}
-                        a creative frontend developer that fancies design. It
-                        also enjoys music, sports and food.
-                    </p>
+                <div
+                    css={[
+                        styles.whiteSpace,
+                        { backgroundColor: theme.colors.backdrop },
+                    ]}
+                >
+                    <Fade right>
+                        <div css={styles.description}>
+                            <p>
+                                <span style={{ fontStyle: "normal" }}>
+                                    <strong>[dej-vid, larsawn]</strong>
+                                </span>{" "}
+                                a creative frontend developer that fancies
+                                design. It also enjoys music, sports and food.
+                            </p>
+                        </div>
+                    </Fade>
                 </div>
-            </div>
-            <div css={styles.imageContainer}>
-                <HeroLogo
-                    css={[styles.heroLogo, { fill: theme.colors.backdrop }]}
-                />
-            </div>
-        </PageContentWrapper>
+                <div css={styles.imageContainer}>
+                    <HeroLogo
+                        css={[styles.heroLogo, { fill: theme.colors.backdrop }]}
+                    />
+                </div>
+            </PageContentWrapper>
+        </Fade>
     );
 };
 

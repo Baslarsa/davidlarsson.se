@@ -4,7 +4,7 @@ import "./App.scss";
 import Routes from "./components/global/Routes";
 import SiteWrapper from "./containers/SiteWrapper";
 import { ThemeProvider } from "@emotion/react";
-import { darkTheme, lightTheme } from "./components/global/theme";
+import { darkTheme, lightTheme } from "./constants/theme";
 
 function App() {
     let darkModeStorageState = localStorage.getItem("DARKMODE") === "true";

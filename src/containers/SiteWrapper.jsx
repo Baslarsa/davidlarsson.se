@@ -5,6 +5,7 @@ import { css, useTheme } from "@emotion/react";
 import Navigation from "../components/global/Navigation";
 import DarkModeToggle from "../components/global/DarkModeToggle";
 import { Icon } from "../icons";
+import { Fade } from "react-reveal";
 
 const styles = {
     wrapper: css`
@@ -44,12 +45,14 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
     return (
         <>
             <div css={styles.socialWrapper}>
-                <a href="www.google.com">
-                    <Icon.GithubIcon css={{ fill: theme.colors.text }} />
-                </a>
-                <a href="www.google.com">
-                    <Icon.LinkedinIcon css={{ fill: theme.colors.text }} />
-                </a>
+                <Fade right>
+                    <a href="www.google.com">
+                        <Icon.GithubIcon css={{ fill: theme.colors.text }} />
+                    </a>
+                    <a href="www.google.com">
+                        <Icon.LinkedinIcon css={{ fill: theme.colors.text }} />
+                    </a>
+                </Fade>
             </div>
             <div
                 css={(theme) => [
@@ -59,15 +62,19 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
             >
                 <div css={styles.navContainer}>
                     <a css={styles.siteLogo} href="/home">
-                        <Icon.MainLogo
-                            css={(theme) => ({ fill: theme.colors.text })}
-                        />
+                        <Fade left>
+                            <Icon.MainLogo
+                                css={(theme) => ({ fill: theme.colors.text })}
+                            />
+                        </Fade>
                     </a>
-                    <Navigation />
-                    <DarkModeToggle
-                        onChange={onThemeChange}
-                        toggleState={isDarkMode}
-                    />
+                    <Fade left>
+                        <Navigation />
+                        <DarkModeToggle
+                            onChange={onThemeChange}
+                            toggleState={isDarkMode}
+                        />
+                    </Fade>
                 </div>
                 <div css={styles.content}>{children}</div>
             </div>

@@ -23,3 +23,18 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+input::placeholder,
+textarea::placeholder,
+input,
+textarea {
+    font-family: $Neue;
+    font-size: 16px;
+}
