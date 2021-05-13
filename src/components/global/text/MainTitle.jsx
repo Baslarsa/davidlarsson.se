@@ -2,7 +2,11 @@ const MainTitle = ({ children, className, color }) => {
     return (
         <h1
             className={className}
-            style={{ fontSize: "78px", margin: "0", color: `${color}` }}
+            style={{
+                margin: "0",
+                color: `${color}`,
+                textTransform: "uppercase",
+            }}
         >
             {children}
         </h1>

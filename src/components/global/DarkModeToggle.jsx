@@ -13,6 +13,9 @@ const styles = {
         svg {
             margin: 0.2rem 0;
         }
+        @media screen and (max-width: 1024px) {
+            display: none;
+        }
     `,
     moon: css`
         padding: 0.5rem;
@@ -61,7 +64,10 @@ const DarkModeToggle = ({ onChange, toggleState }) => {
                     `,
                     toggleState && [
                         styles.toggleOn,
-                        { backgroundColor: theme.colors.primary },
+                        {
+                            backgroundColor: theme.colors.primary,
+                            borderColor: "transparent",
+                        },
                     ],
                 ]}
             >

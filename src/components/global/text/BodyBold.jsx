@@ -3,10 +3,10 @@ const BodyBold = ({ children, className, color }) => {
         <p
             className={className}
             style={{
-                fontSize: "20px",
                 fontWeight: "bold",
                 margin: "0",
                 color: `${color}`,
+                letterSpacing: "1px",
             }}
         >
             {children}

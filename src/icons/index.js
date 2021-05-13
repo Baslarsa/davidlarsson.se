@@ -10,6 +10,7 @@ import GithubIcon from "./GithubIcon";
 import ArrowIcon from "./ArrowIcon";
 import Play from "./Play";
 import Pause from "./Pause";
+import Spinner from "./Spinner";
 
 const Icons = {
     AboutIcon,
@@ -24,6 +25,7 @@ const Icons = {
     ArrowIcon,
     Play,
     Pause,
+    Spinner,
 };
 
 export const Icon = { ...Icons };

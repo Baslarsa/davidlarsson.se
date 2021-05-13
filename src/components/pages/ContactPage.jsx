@@ -1,22 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import PageContentWrapper from "../../containers/PageContentWrapper";
-import backgroundImage from "../../images/plane.jpg";
 import StandardForm from "../global/StandardForm";
 import Body from "../global/text/Body";
 import BodyBold from "../global/text/BodyBold";
 import MainTitle from "../global/text/MainTitle";
 import Fade from "react-reveal/Fade";
+import { useFetchData } from "../../utils/useFetchData";
+import { BASE_URL, ENDPOINT } from "../../constants/constants";
 
 const styles = {
-    wrapper: css`
-        background-color: transparent;
-        display: flex;
-    `,
     imageContainer: css`
         width: 50%;
         height: 100%;
-        background-image: url(${backgroundImage});
         background-size: cover;
         background-position: center;
         position: relative;
@@ -26,11 +22,19 @@ const styles = {
         padding: 2rem;
         box-sizing: border-box;
         color: white;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+        }
     `,
     mainTitle: css`
         position: absolute;
         right: 4rem;
         bottom: 4rem;
+        @media screen and (max-width: 1024px) {
+            position: initial;
+            display: flex;
+            flex-direction: column;
+        }
     `,
     whiteSpace: css`
         width: 50%;
@@ -40,14 +44,19 @@ const styles = {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+        }
     `,
 };
 
-const AboutPage = () => {
+const ContactPage = () => {
     const theme = useTheme();
+    const { isLoading, data } = useFetchData(ENDPOINT.CONTACTPAGE);
     return (
         <PageContentWrapper
-            css={[styles.wrapper, { color: theme.colors.text }]}
+            style={{ color: theme.colors.text }}
+            loading={isLoading}
         >
             <div
                 css={[
@@ -56,48 +65,57 @@ const AboutPage = () => {
                 ]}
             >
                 <Fade left>
-                    <BodyBold>
-                        If you haven't found what you look for already. Contact
-                        me through this form.
-                    </BodyBold>
-                    <Body>Or you can just use the info to the right. </Body>
+                    <BodyBold>{data.title}</BodyBold>
+                    <Body>{data.description}</Body>
                 </Fade>
                 <StandardForm />
             </div>
-            <div css={styles.imageContainer}>
-                <Fade delay={800}>
-                    <Body>
-                        <strong>name:</strong>
+            {data.contact && (
+                <div
+                    css={[
+                        styles.imageContainer,
+                        {
+                            backgroundImage: `url(${
+                                BASE_URL + data.image.formats.large.url
+                            })`,
+                        },
+                    ]}
+                >
+                    <Fade delay={800}>
+                        <Body>
+                            <strong>name:</strong>
+                            <br />
+                            {data.contact.name}
+                        </Body>
                         <br />
-                        David Larsson
-                    </Body>
-                    <br />
-                    <Body>
-                        <strong>address:</strong>
+                        <Body>
+                            <strong>address:</strong>
+                            <br />
+                            {data.contact.address}
+                            <br />
+                            {`${data.contact.zip}, ${data.contact.city}`}
+                        </Body>
                         <br />
-                        Gamla Enköpingsvägen 130B
+                        <Body>
+                            <strong>email:</strong> <br />
+                            {data.contact.email}
+                        </Body>
                         <br />
-                        17461, Sundbyberg
-                    </Body>
-                    <br />
-                    <Body>
-                        <strong>email:</strong> <br />
-                        davvelars@gmail.com
-                    </Body>
-                    <Body>
-                        <strong>phone:</strong> <br />
-                        +46 74 841 14 54
-                    </Body>
-                </Fade>
-
-                <MainTitle css={styles.mainTitle}>
-                    <Fade bottom delay={200}>
-                        CONTACT ME
+                        <Body>
+                            <strong>phone:</strong> <br />
+                            {data.contact.phone}
+                        </Body>
                     </Fade>
-                </MainTitle>
-            </div>
+
+                    <MainTitle css={styles.mainTitle}>
+                        <Fade bottom delay={200}>
+                            CONTACT ME
+                        </Fade>
+                    </MainTitle>
+                </div>
+            )}
         </PageContentWrapper>
     );
 };
 
-export default AboutPage;
+export default ContactPage;

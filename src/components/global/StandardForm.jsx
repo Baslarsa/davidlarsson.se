@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
-import Label from "./text/Label";
 import PrimaryButton from "../PrimaryButton";
 import Fade from "react-reveal/Fade";
 
@@ -31,7 +30,6 @@ const StandardForm = () => {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm();
     const onSubmit = (data) => console.log(data);

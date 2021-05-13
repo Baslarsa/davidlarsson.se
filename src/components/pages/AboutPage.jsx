@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme, keyframes } from "@emotion/react";
 import PageContentWrapper from "../../containers/PageContentWrapper";
-import backgroundImage from "../../images/davidlarsson-bw.jpg";
 import AudioPlayer from "../global/AudioPlayer";
 import MainTitle from "../global/text/MainTitle";
 import audioFile from "../../constants/0emotions.mp3";
 import Fade from "react-reveal/Fade";
+import { useFetchData } from "../../utils/useFetchData";
+import { ENDPOINT, BASE_URL } from "../../constants/constants";
 
 const flexContainer = keyframes`
     from {
@@ -18,14 +19,9 @@ const flexContainer = keyframes`
 `;
 
 const styles = {
-    wrapper: css`
-        background-color: transparent;
-        display: flex;
-    `,
     imageContainer: css`
         width: 30%;
         height: 100%;
-        background-image: url(${backgroundImage});
         background-size: cover;
         background-position: center;
         display: flex;
@@ -34,6 +30,11 @@ const styles = {
         padding: 2rem;
         box-sizing: border-box;
         animation: ${flexContainer} 1s ease;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            height: 50vh;
+            animation: none;
+        }
     `,
     whiteSpace: css`
         width: 70%;
@@ -43,15 +44,22 @@ const styles = {
         flex-direction: column;
         justify-content: flex-end;
         position: relative;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            height: auto;
+        }
     `,
 };
 
 const AboutPage = () => {
     const theme = useTheme();
+    const { isLoading, data } = useFetchData(ENDPOINT.ABOUTPAGE);
+
     return (
         <Fade>
             <PageContentWrapper
-                css={[styles.wrapper, { color: theme.colors.text }]}
+                style={{ color: theme.colors.text }}
+                loading={isLoading}
             >
                 <div
                     css={[
@@ -59,58 +67,30 @@ const AboutPage = () => {
                         { backgroundColor: theme.colors.backdrop },
                     ]}
                 >
-                    <div>
-                        <Fade delay={800}>
-                            <MainTitle>THE</MainTitle>
-                            <MainTitle>STORY</MainTitle>
-
-                            <br />
-                            <p>
-                                Started out as a dreamer with a vision of
-                                becoming a hockey star. I spent most of my
-                                younger years chasing pucks. When I grew older I
-                                found that my suit contained something else -
-                                creativity. This was what I became to spend both
-                                day and night with. I started to find ambition
-                                in music and the creative process behind it.{" "}
+                    {data && (
+                        <div>
+                            <Fade delay={800}>
+                                <MainTitle>{data.title}</MainTitle>
                                 <br />
-                                In 2015 after a few years as a working class
-                                hero at the local rock-drilling factory, I got
-                                accepted to one of the most renowned songwriting
-                                and music-production schools in Sweden. Maybe
-                                the world. Musikmakarna. From this day I left my
-                                hometown permanently. I got quite good at making
-                                music and spent a couple of years freelancing
-                                the music biz, writing songs for quite big
-                                artists such as Felix Sandman and Molly Hammar.
-                                Yea, that’s why that song is in the player on
-                                this page, gotta get them royalties hehe. <br />
-                                <br />
-                                Jokes aside, as is the music - In 2019 I made
-                                the decision to put the music on the shelf – I
-                                didn’t find it as amusing and fun as I used to.
-                                Happily it pointed me to the development area
-                                since it always has been an area I’ve been
-                                wanting to get to know. <br />I started out
-                                studying front-end development at IT-Högskolan
-                                in Stockholm. It felt quite creative and still
-                                hugely demanded on the market which was kind of
-                                what I was after when deciding on what way to
-                                go. In frontend development I find pleasure in
-                                getting the pixles just perfect, the animations
-                                to feel like butter and to package an idea into
-                                the perfect gift-wrap. Now I’ve made two
-                                internships and feel stoked to enter the biz for
-                                real. Feel free to hit me up with a message or
-                                call if you’re wondering anything or would like
-                                to know me even better.
-                            </p>
-                        </Fade>
+                                <p>{data.text}</p>
+                            </Fade>
+                        </div>
+                    )}
+                </div>
+                {data.image && (
+                    <div
+                        css={[
+                            styles.imageContainer,
+                            {
+                                backgroundImage: `url(${
+                                    BASE_URL + data.image.formats.large.url
+                                })}`,
+                            },
+                        ]}
+                    >
+                        <AudioPlayer audioFile={audioFile} />
                     </div>
-                </div>
-                <div css={styles.imageContainer}>
-                    <AudioPlayer audioFile={audioFile} />
-                </div>
+                )}
             </PageContentWrapper>
         </Fade>
     );

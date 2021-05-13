@@ -4,7 +4,11 @@ import { css, useTheme } from "@emotion/react";
 import { Icon } from "../../icons";
 import BodyBold from "./text/BodyBold";
 import Body from "./text/Body";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useFetchData } from "../../utils/useFetchData";
+import { ENDPOINT } from "../../constants/constants";
+import { cleanupSemantic } from "jest-diff/build/cleanupSemantic";
+import LoadingOverlay from "./LoadingOverlay";
 
 const styles = {
     wrapper: css`
@@ -53,8 +57,8 @@ const styles = {
 
 const ExpandableList = ({ list, title }) => {
     const [openRow, setIsOpenRow] = useState([]);
+    const [tabData, setTabData] = useState([]);
     const theme = useTheme();
-
     const toggleRow = (identifier) => {
         if (openRow.includes(identifier)) {
             setIsOpenRow([]);
@@ -62,49 +66,71 @@ const ExpandableList = ({ list, title }) => {
             setIsOpenRow(identifier);
         }
     };
+    const { isLoading, data = {} } = useFetchData(ENDPOINT.EXP_TYPES);
+
+    useEffect(() => {
+        const setState = () => {
+            if (data.length) {
+                const dataList = data.filter((e) => e.type === list);
+                setTabData(dataList[0]?.experiences);
+            }
+        };
+        setState();
+    }, [data, list]);
 
     return (
         <div css={styles.wrapper}>
             <Title>{title}</Title>
-            <div css={styles.rowWrap}>
-                {list.map((item) => (
-                    <>
-                        <div
-                            css={styles.row}
-                            key={item.title}
-                            onClick={() => toggleRow(item.title)}
-                        >
+            {tabData ? (
+                <div css={styles.rowWrap}>
+                    {tabData?.map((item) => (
+                        <div key={item.name}>
                             <div
-                                css={[
-                                    styles.icon,
-                                    openRow.includes(item.title) &&
-                                        styles.rotate,
-                                ]}
+                                css={styles.row}
+                                onClick={() => toggleRow(item.name)}
                             >
-                                <Icon.ArrowIcon
-                                    css={{
-                                        stroke: `${theme.colors.text}`,
-                                    }}
-                                />
+                                <div
+                                    css={[
+                                        styles.icon,
+                                        openRow.includes(item.name) &&
+                                            styles.rotate,
+                                    ]}
+                                >
+                                    <Icon.ArrowIcon
+                                        css={{
+                                            stroke: `${theme.colors.text}`,
+                                        }}
+                                    />
+                                </div>
+                                <div css={styles.text}>
+                                    <BodyBold>{item.name}</BodyBold>
+                                    <Body>{item.location}</Body>
+                                </div>
+                                <Body css={styles.duration}>
+                                    {item.duration}
+                                </Body>
                             </div>
-                            <div css={styles.text}>
-                                <BodyBold>{item.title}</BodyBold>
-                                <Body>{item.location}</Body>
+                            <div>
+                                <Body
+                                    css={[
+                                        styles.expandableRow,
+                                        openRow.includes(item.name) &&
+                                            styles.expand,
+                                        {
+                                            backgroundColor:
+                                                theme.colors.background,
+                                        },
+                                    ]}
+                                >
+                                    {item.description}
+                                </Body>
                             </div>
-                            <div css={styles.duration}>{item.duration}</div>
                         </div>
-                        <div
-                            css={[
-                                styles.expandableRow,
-                                openRow.includes(item.title) && styles.expand,
-                                { backgroundColor: theme.colors.background },
-                            ]}
-                        >
-                            <Body>{item.description}</Body>
-                        </div>
-                    </>
-                ))}
-            </div>
+                    ))}
+                </div>
+            ) : (
+                <LoadingOverlay loading={isLoading} />
+            )}
         </div>
     );
 };

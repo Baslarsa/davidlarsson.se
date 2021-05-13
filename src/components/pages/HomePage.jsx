@@ -1,22 +1,25 @@
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import PageContentWrapper from "../../containers/PageContentWrapper";
-import backgroundImage from "../../images/davidlarsson-bw.jpg";
 import HeroLogo from "../../images/davidlarsson-hero-image";
 import Fade from "react-reveal/Fade";
+import { useFetchData } from "../../utils/useFetchData";
+import { ENDPOINT } from "../../constants/constants";
 
 const styles = {
-    wrapper: css`
-        background-color: transparent;
-        display: flex;
-    `,
     imageContainer: css`
         width: 70%;
         height: 100%;
-        background-image: url(${backgroundImage});
         background-size: cover;
         background-position: center;
         position: relative;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+            height: 40vh;
+        }
+        @media screen and (max-width: 768px) {
+            height: 60vh;
+        }
     `,
     whiteSpace: css`
         width: 30%;
@@ -25,6 +28,9 @@ const styles = {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+        }
     `,
     heroLogo: css`
         position: absolute;
@@ -37,13 +43,16 @@ const styles = {
         transition: all 0.2s ease;
     `,
 };
-
 const HomePage = () => {
     const theme = useTheme();
+
+    const { isLoading, data } = useFetchData(ENDPOINT.HOMEPAGE);
+
     return (
         <Fade>
             <PageContentWrapper
-                css={[styles.wrapper, { color: theme.colors.text }]}
+                style={{ color: theme.colors.text }}
+                loading={isLoading}
             >
                 <div
                     css={[
@@ -55,19 +64,30 @@ const HomePage = () => {
                         <div css={styles.description}>
                             <p>
                                 <span style={{ fontStyle: "normal" }}>
-                                    <strong>[dej-vid, larsawn]</strong>
+                                    <strong>{data?.Herotextclam}</strong>
                                 </span>{" "}
-                                a creative frontend developer that fancies
-                                design. It also enjoys music, sports and food.
+                                {data?.Herotext}
                             </p>
                         </div>
                     </Fade>
                 </div>
-                <div css={styles.imageContainer}>
-                    <HeroLogo
-                        css={[styles.heroLogo, { fill: theme.colors.backdrop }]}
-                    />
-                </div>
+                {data.Heroimage && (
+                    <div
+                        css={[
+                            styles.imageContainer,
+                            {
+                                backgroundImage: `url(http://localhost:1337${data.Heroimage.formats?.large.url})`,
+                            },
+                        ]}
+                    >
+                        <HeroLogo
+                            css={[
+                                styles.heroLogo,
+                                { fill: theme.colors.backdrop },
+                            ]}
+                        />
+                    </div>
+                )}
             </PageContentWrapper>
         </Fade>
     );

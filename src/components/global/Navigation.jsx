@@ -2,7 +2,7 @@ import React from "react";
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from "@emotion/react";
 import { Link, useLocation, matchPath } from "react-router-dom";
-import { Icon } from "../../icons/";
+import { Icon } from "../../icons";
 
 const styles = {
     navWrapper: css`
@@ -14,6 +14,13 @@ const styles = {
         a {
             padding: 0.2rem 0;
             margin: 0.6rem 0;
+            @media screen and (max-width: 1024px) {
+                padding: 0 0.2rem;
+                margin: 0 0.6rem;
+            }
+        }
+        @media screen and (max-width: 1024px) {
+            flex-direction: row;
         }
     `,
     navIconActive: css`

@@ -2,15 +2,33 @@
 
 h1 {
     font-family: $NeueBold;
+    font-size: 78px;
+    @media screen and (max-width: 1024px) {
+        font-size: 48px;
+    }
 }
 h2 {
     font-family: $NeueBold;
+    font-size: 58px;
+    @media screen and (max-width: 1024px) {
+        font-size: 48px;
+    }
+}
+h3 {
+    font-family: $Neue;
+    font-size: 28px;
+    @media screen and (max-width: 1024px) {
+        font-size: 28px;
+    }
 }
 
 p {
     font-family: $Neue;
     font-size: 16px;
     line-height: 1.6;
+    @media screen and (max-width: 1024px) {
+        font-size: 12px;
+    }
 }
 
 strong {
