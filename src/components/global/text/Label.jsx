@@ -3,11 +3,10 @@ const Label = ({ children, className, color }) => {
         <p
             className={className}
             style={{
-                margin: "0",
+                margin: '0',
                 color: `${color}`,
-                letterSpacing: "1px",
-            }}
-        >
+                letterSpacing: '1px',
+            }}>
             {children}
         </p>
     );

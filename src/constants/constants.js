@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:1337";
+export const BASE_URL = 'https://davidlarsson-backend.herokuapp.com';
 
 export const ENDPOINT = {
     HOMEPAGE: `${BASE_URL}/homepage`,
@@ -10,10 +10,10 @@ export const ENDPOINT = {
 };
 
 export const FONTSIZE = {
-    BODY: "18px",
-    BODYBOLD: "20px",
-    LABEL: "18px",
-    TITLE: "48px",
-    SUBTITLE: "56px",
-    MAINTITLE: "78px",
+    BODY: '18px',
+    BODYBOLD: '20px',
+    LABEL: '18px',
+    TITLE: '48px',
+    SUBTITLE: '56px',
+    MAINTITLE: '78px',
 };

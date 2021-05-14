@@ -1,22 +1,22 @@
-import React from "react";
+import React from 'react';
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import Navigation from "../components/global/Navigation";
-import DarkModeToggle from "../components/global/DarkModeToggle";
-import { Icon } from "../icons";
-import { Fade } from "react-reveal";
-import { useFetchData } from "../utils/useFetchData";
-import { ENDPOINT } from "../constants/constants";
+import { css, useTheme } from '@emotion/react';
+import Navigation from '../components/global/Navigation';
+import DarkModeToggle from '../components/global/DarkModeToggle';
+import { Icon } from '../icons';
+import { Fade } from 'react-reveal';
+import { useFetchData } from '../utils/useFetchData';
+import { ENDPOINT } from '../constants/constants';
 
 const SocialIcon = ({ name, link, color }) => {
     switch (name) {
-        case "Linkedin":
+        case 'Linkedin':
             return (
                 <a target="_blank" href={link} rel="noreferrer">
                     <Icon.LinkedinIcon css={{ fill: color }} />
                 </a>
             );
-        case "Github":
+        case 'Github':
             return (
                 <a target="_blank" href={link} rel="noreferrer">
                     <Icon.GithubIcon css={{ fill: color }} />
@@ -98,8 +98,7 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
                         css={[
                             { backgroundColor: theme.colors.background },
                             styles.wrapper,
-                        ]}
-                    >
+                        ]}>
                         <div css={styles.navContainer}>
                             <a css={styles.siteLogo} href="/home">
                                 <Fade left>

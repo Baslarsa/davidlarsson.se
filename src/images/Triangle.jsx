@@ -6,8 +6,7 @@ const Triangle = ({ ...props }) => {
             height="100%"
             width="100%"
             {...props}
-            preserveAspectRatio="none"
-        >
+            preserveAspectRatio="none">
             <polygon points="212 862 0 862 0 0 212 862 212 862" />
         </svg>
     );

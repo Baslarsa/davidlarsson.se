@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import PageContentWrapper from "../../containers/PageContentWrapper";
-import HeroLogo from "../../images/davidlarsson-hero-image";
-import Fade from "react-reveal/Fade";
-import { useFetchData } from "../../utils/useFetchData";
-import { ENDPOINT } from "../../constants/constants";
+import { css, useTheme } from '@emotion/react';
+import PageContentWrapper from '../../containers/PageContentWrapper';
+import HeroLogo from '../../images/davidlarsson-hero-image';
+import Fade from 'react-reveal/Fade';
+import { useFetchData } from '../../utils/useFetchData';
+import { BASE_URL, ENDPOINT } from '../../constants/constants';
 
 const styles = {
     imageContainer: css`
@@ -30,6 +30,7 @@ const styles = {
         justify-content: flex-end;
         @media screen and (max-width: 1024px) {
             width: 100%;
+            height: 30vh;
         }
     `,
     heroLogo: css`
@@ -52,20 +53,18 @@ const HomePage = () => {
         <Fade>
             <PageContentWrapper
                 style={{ color: theme.colors.text }}
-                loading={isLoading}
-            >
+                loading={isLoading}>
                 <div
                     css={[
                         styles.whiteSpace,
                         { backgroundColor: theme.colors.backdrop },
-                    ]}
-                >
+                    ]}>
                     <Fade right>
                         <div css={styles.description}>
                             <p>
-                                <span style={{ fontStyle: "normal" }}>
+                                <span style={{ fontStyle: 'normal' }}>
                                     <strong>{data?.Herotextclam}</strong>
-                                </span>{" "}
+                                </span>{' '}
                                 {data?.Herotext}
                             </p>
                         </div>
@@ -76,10 +75,9 @@ const HomePage = () => {
                         css={[
                             styles.imageContainer,
                             {
-                                backgroundImage: `url(http://localhost:1337${data.Heroimage.formats?.large.url})`,
+                                backgroundImage: `url(${BASE_URL}${data.Heroimage.formats?.large.url})`,
                             },
-                        ]}
-                    >
+                        ]}>
                         <HeroLogo
                             css={[
                                 styles.heroLogo,

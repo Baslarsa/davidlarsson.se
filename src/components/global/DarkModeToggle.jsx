@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import { Icon } from "../../icons";
+import { css, useTheme } from '@emotion/react';
+import { Icon } from '../../icons';
 
 const styles = {
     nightToggle: css`
@@ -66,11 +66,10 @@ const DarkModeToggle = ({ onChange, toggleState }) => {
                         styles.toggleOn,
                         {
                             backgroundColor: theme.colors.primary,
-                            borderColor: "transparent",
+                            borderColor: 'transparent',
                         },
                     ],
-                ]}
-            >
+                ]}>
                 <div
                     css={[
                         styles.toggleSwitch,
@@ -79,8 +78,7 @@ const DarkModeToggle = ({ onChange, toggleState }) => {
                             styles.noBg,
                             { backgroundColor: theme.colors.background },
                         ],
-                    ]}
-                ></div>
+                    ]}></div>
             </div>
         </div>
     );

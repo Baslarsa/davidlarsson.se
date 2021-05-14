@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import PageContentWrapper from "../../containers/PageContentWrapper";
-import StandardForm from "../global/StandardForm";
-import Body from "../global/text/Body";
-import BodyBold from "../global/text/BodyBold";
-import MainTitle from "../global/text/MainTitle";
-import Fade from "react-reveal/Fade";
-import { useFetchData } from "../../utils/useFetchData";
-import { BASE_URL, ENDPOINT } from "../../constants/constants";
+import { css, useTheme } from '@emotion/react';
+import PageContentWrapper from '../../containers/PageContentWrapper';
+import StandardForm from '../global/StandardForm';
+import Body from '../global/text/Body';
+import BodyBold from '../global/text/BodyBold';
+import MainTitle from '../global/text/MainTitle';
+import Fade from 'react-reveal/Fade';
+import { useFetchData } from '../../utils/useFetchData';
+import { BASE_URL, ENDPOINT } from '../../constants/constants';
+import LoadingOverlay from '../global/LoadingOverlay';
 
 const styles = {
     imageContainer: css`
@@ -53,34 +54,32 @@ const styles = {
 const ContactPage = () => {
     const theme = useTheme();
     const { isLoading, data } = useFetchData(ENDPOINT.CONTACTPAGE);
+
     return (
         <PageContentWrapper
             style={{ color: theme.colors.text }}
-            loading={isLoading}
-        >
+            loading={isLoading}>
             <div
                 css={[
                     styles.whiteSpace,
                     { backgroundColor: theme.colors.backdrop },
-                ]}
-            >
+                ]}>
                 <Fade left>
                     <BodyBold>{data.title}</BodyBold>
                     <Body>{data.description}</Body>
                 </Fade>
                 <StandardForm />
             </div>
-            {data.contact && (
+            {data.contact ? (
                 <div
                     css={[
                         styles.imageContainer,
                         {
                             backgroundImage: `url(${
-                                BASE_URL + data.image.formats.large.url
+                                BASE_URL + data.image.formats.medium.url
                             })`,
                         },
-                    ]}
-                >
+                    ]}>
                     <Fade delay={800}>
                         <Body>
                             <strong>name:</strong>
@@ -113,6 +112,8 @@ const ContactPage = () => {
                         </Fade>
                     </MainTitle>
                 </div>
+            ) : (
+                <LoadingOverlay loading={isLoading} />
             )}
         </PageContentWrapper>
     );

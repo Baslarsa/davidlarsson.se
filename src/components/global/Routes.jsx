@@ -1,9 +1,9 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-import HomePage from "../pages/HomePage";
-import AboutPage from "../pages/AboutPage";
-import ExperiencePage from "../pages/ExperiencePage";
-import ContactPage from "../pages/ContactPage";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import HomePage from '../pages/HomePage';
+import AboutPage from '../pages/AboutPage';
+import ExperiencePage from '../pages/ExperiencePage';
+import ContactPage from '../pages/ContactPage';
 
 const Routes = () => {
     return (

@@ -3,11 +3,10 @@ const MainTitle = ({ children, className, color }) => {
         <h1
             className={className}
             style={{
-                margin: "0",
+                margin: '0',
                 color: `${color}`,
-                textTransform: "uppercase",
-            }}
-        >
+                textTransform: 'uppercase',
+            }}>
             {children}
         </h1>
     );

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme, keyframes } from "@emotion/react";
-import { Icon } from "../../icons";
+import { css, useTheme, keyframes } from '@emotion/react';
+import { Icon } from '../../icons';
 
 const rotate = keyframes`
     from {
@@ -34,9 +34,9 @@ const LoadingOverlay = () => {
                     styles.icon,
                     {
                         fill: theme.colors.text,
-                        height: "2rem",
-                        width: "2rem",
-                        marginLeft: "-10rem",
+                        height: '2rem',
+                        width: '2rem',
+                        marginLeft: '-10rem',
                     },
                 ]}
             />

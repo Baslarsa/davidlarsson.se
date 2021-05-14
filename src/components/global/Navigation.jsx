@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import { Link, useLocation, matchPath } from "react-router-dom";
-import { Icon } from "../../icons";
+import { css, useTheme } from '@emotion/react';
+import { Link, useLocation, matchPath } from 'react-router-dom';
+import { Icon } from '../../icons';
 
 const styles = {
     navWrapper: css`
@@ -44,21 +44,21 @@ const styles = {
 };
 
 const menuItems = [
-    { linkPath: "/home", Icon: Icon.HomeIcon, key: "home" },
+    { linkPath: '/home', Icon: Icon.HomeIcon, key: 'home' },
     {
-        linkPath: "/about",
+        linkPath: '/about',
         Icon: Icon.AboutIcon,
-        key: "about",
+        key: 'about',
     },
     {
-        linkPath: "/experience",
+        linkPath: '/experience',
         Icon: Icon.ExperienceIcon,
-        key: "experience",
+        key: 'experience',
     },
     {
-        linkPath: "/contact",
+        linkPath: '/contact',
         Icon: Icon.ContactIcon,
-        key: "contact",
+        key: 'contact',
     },
 ];
 
@@ -84,8 +84,7 @@ const Navigation = () => {
                                       },
                                   ]
                                 : styles.iconWrapInActive,
-                        ]}
-                    >
+                        ]}>
                         <Icon
                             css={[
                                 isPathActive(linkPath)

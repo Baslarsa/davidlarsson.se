@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme, keyframes } from "@emotion/react";
-import PageContentWrapper from "../../containers/PageContentWrapper";
-import AudioPlayer from "../global/AudioPlayer";
-import MainTitle from "../global/text/MainTitle";
-import audioFile from "../../constants/0emotions.mp3";
-import Fade from "react-reveal/Fade";
-import { useFetchData } from "../../utils/useFetchData";
-import { ENDPOINT, BASE_URL } from "../../constants/constants";
+import { css, useTheme, keyframes } from '@emotion/react';
+import PageContentWrapper from '../../containers/PageContentWrapper';
+import AudioPlayer from '../global/AudioPlayer';
+import MainTitle from '../global/text/MainTitle';
+import audioFile from '../../constants/0emotions.mp3';
+import Fade from 'react-reveal/Fade';
+import { useFetchData } from '../../utils/useFetchData';
+import { ENDPOINT, BASE_URL } from '../../constants/constants';
 
 const flexContainer = keyframes`
     from {
@@ -59,14 +59,12 @@ const AboutPage = () => {
         <Fade>
             <PageContentWrapper
                 style={{ color: theme.colors.text }}
-                loading={isLoading}
-            >
+                loading={isLoading}>
                 <div
                     css={[
                         styles.whiteSpace,
                         { backgroundColor: theme.colors.backdrop },
-                    ]}
-                >
+                    ]}>
                     {data && (
                         <div>
                             <Fade delay={800}>
@@ -86,8 +84,7 @@ const AboutPage = () => {
                                     BASE_URL + data.image.formats.large.url
                                 })}`,
                             },
-                        ]}
-                    >
+                        ]}>
                         <AudioPlayer audioFile={audioFile} />
                     </div>
                 )}

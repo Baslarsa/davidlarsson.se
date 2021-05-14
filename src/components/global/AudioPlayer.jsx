@@ -1,12 +1,12 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import { Icon } from "../../icons";
-import Body from "./text/Body";
-import BodyBold from "./text/BodyBold";
-import image from "../../images/emotions.jpeg";
-import ReactHowler from "react-howler";
-import { useState } from "react";
-import Fade from "react-reveal/Fade";
+import { css, useTheme } from '@emotion/react';
+import { Icon } from '../../icons';
+import Body from './text/Body';
+import BodyBold from './text/BodyBold';
+import image from '../../images/emotions.jpeg';
+import ReactHowler from 'react-howler';
+import { useState } from 'react';
+import Fade from 'react-reveal/Fade';
 
 const styles = {
     wrapper: css`
@@ -50,6 +50,9 @@ const styles = {
             opacity: 1;
         }
     `,
+    text: css`
+        width: 100%;
+    `,
 };
 
 const AudioPlayer = ({ audioFile }) => {
@@ -59,8 +62,7 @@ const AudioPlayer = ({ audioFile }) => {
     return (
         <div
             css={[styles.wrapper]}
-            onClick={() => setAudioIsPlaying(!audioIsPlaying)}
-        >
+            onClick={() => setAudioIsPlaying(!audioIsPlaying)}>
             <Fade delay={500}>
                 <div css={styles.imageContainer}>
                     <ReactHowler src={audioFile} playing={audioIsPlaying} />
@@ -69,32 +71,37 @@ const AudioPlayer = ({ audioFile }) => {
                             styles.overlay,
                             { backgroundColor: theme.colors.black_transparent },
                             audioIsPlaying && { opacity: 1 },
-                        ]}
-                    ></div>
+                        ]}></div>
                     <div css={styles.iconWrap}>
                         {audioIsPlaying ? (
                             <Icon.Pause
                                 css={{
                                     fill: theme.colors.white,
-                                    height: "3rem",
-                                    width: "3rem",
+                                    height: '3rem',
+                                    width: '3rem',
                                 }}
                             />
                         ) : (
                             <Icon.Play
                                 css={{
                                     fill: theme.colors.white,
-                                    height: "3rem",
-                                    width: "3rem",
+                                    height: '3rem',
+                                    width: '3rem',
                                 }}
                             />
                         )}
                     </div>
                 </div>
-                <BodyBold css={{ color: theme.colors.white }}>
-                    Felix Sandman
-                </BodyBold>
-                <Body css={{ color: theme.colors.white }}>0 Emotions</Body>
+                <div
+                    css={[
+                        styles.text,
+                        { backgroundColor: theme.colors.black_transparent },
+                    ]}>
+                    <BodyBold css={{ color: theme.colors.white }}>
+                        Felix Sandman
+                    </BodyBold>
+                    <Body css={{ color: theme.colors.white }}>0 Emotions</Body>
+                </div>
             </Fade>
         </div>
     );

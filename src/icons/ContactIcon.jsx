@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ContactIcon = ({ ...props }) => {
     return (
@@ -7,8 +7,7 @@ const ContactIcon = ({ ...props }) => {
             height="19"
             viewBox="0 0 20 19"
             {...props}
-            xmlns="http://www.w3.org/2000/svg"
-        >
+            xmlns="http://www.w3.org/2000/svg">
             <path d="M10 9C10.5523 9 11 8.55228 11 8C11 7.44772 10.5523 7 10 7C9.44772 7 9 7.44772 9 8C9 8.55228 9.44772 9 10 9Z" />
             <path d="M14 9C14.5523 9 15 8.55228 15 8C15 7.44772 14.5523 7 14 7C13.4477 7 13 7.44772 13 8C13 8.55228 13.4477 9 14 9Z" />
             <path d="M6 9C6.55228 9 7 8.55228 7 8C7 7.44772 6.55228 7 6 7C5.44772 7 5 7.44772 5 8C5 8.55228 5.44772 9 6 9Z" />

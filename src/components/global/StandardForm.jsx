@@ -1,12 +1,15 @@
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import PrimaryButton from "../PrimaryButton";
-import Fade from "react-reveal/Fade";
+import { css, useTheme } from '@emotion/react';
+import PrimaryButton from '../PrimaryButton';
+import Fade from 'react-reveal/Fade';
 
 const styles = {
     wrapper: css`
         width: 80%;
+        @media screen and (max-width: 1024px) {
+            width: 100%;
+        }
     `,
     form: css`
         display: flex;
@@ -39,10 +42,10 @@ const StandardForm = () => {
             <Fade right delay={300}>
                 <form css={[styles.form]}>
                     <input
-                        {...register("name", { required: true })}
+                        {...register('name', { required: true })}
                         name="name"
                         placeholder={
-                            (errors.name && "Enter your name") || "name"
+                            (errors.name && 'Enter your name') || 'name'
                         }
                         css={[
                             { borderBottom: `1px solid ${theme.colors.text}` },
@@ -50,7 +53,7 @@ const StandardForm = () => {
                         ]}
                     />
                     <input
-                        {...register("subject", { required: true })}
+                        {...register('subject', { required: true })}
                         name="subject"
                         placeholder="subject"
                         css={[
@@ -59,7 +62,7 @@ const StandardForm = () => {
                         ]}
                     />
                     <textarea
-                        {...register("message", { required: true })}
+                        {...register('message', { required: true })}
                         name="message"
                         placeholder="message"
                         css={[

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export const useFetchData = (query) => {
     const [isLoading, setIsLoading] = useState(false);

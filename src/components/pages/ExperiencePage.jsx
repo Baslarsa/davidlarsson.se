@@ -1,43 +1,26 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme, keyframes } from "@emotion/react";
-import { useState } from "react";
+import { css, useTheme, keyframes } from '@emotion/react';
+import { useState } from 'react';
 import {
     Link,
     Route,
     BrowserRouter as Router,
     Switch,
     useRouteMatch,
-} from "react-router-dom";
-import PageContentWrapper from "../../containers/PageContentWrapper";
-import ExpandableList from "../global/ExpandableList";
-import Label from "../global/text/Label";
-import MainTitle from "../global/text/MainTitle";
-import Fade from "react-reveal/Fade";
-import { useFetchData } from "../../utils/useFetchData";
-import { BASE_URL, ENDPOINT } from "../../constants/constants";
-import LoadingOverlay from "../global/LoadingOverlay";
+} from 'react-router-dom';
+import PageContentWrapper from '../../containers/PageContentWrapper';
+import ExpandableList from '../global/ExpandableList';
+import Label from '../global/text/Label';
+import MainTitle from '../global/text/MainTitle';
+import Fade from 'react-reveal/Fade';
+import { useFetchData } from '../../utils/useFetchData';
+import { BASE_URL, ENDPOINT } from '../../constants/constants';
+import LoadingOverlay from '../global/LoadingOverlay';
 
 const TAB_LIST = [
-    { name: "Experience", key: "experience", link: "/experience" },
-    { name: "Education", key: "education", link: "/education" },
-    { name: "Internships", key: "internship", link: "/internships" },
-];
-
-const EDUCATIONS = [
-    {
-        title: "Musikmakarna Songwriters Academy",
-        duration: "2015-2017",
-        location: "Örnsköldsvik",
-        description:
-            "My biggest interests in life is sports, music, tech and food. I played hockey for my entire childhood and realized I wasn’t going to be a hockey pro. I then tried music, and realized it wasn’t a business for me. I guess chocolate making on Mondelez counts for food, so apparently there’s only tech left. Let's start with frontend development.",
-    },
-    {
-        title: "Frontend Development",
-        duration: "2019-2021",
-        location: "IT-Högskolan, Stockholm",
-        description:
-            "My biggest interests in life is sports, music, tech and food. I played hockey for my entire childhood and realized I wasn’t going to be a hockey pro. I then tried music, and realized it wasn’t a business for me. I guess chocolate making on Mondelez counts for food, so apparently there’s only tech left. Let's start with frontend development.",
-    },
+    { name: 'Experience', key: 'experience', link: '/experience' },
+    { name: 'Education', key: 'education', link: '/education' },
+    { name: 'Internships', key: 'internship', link: '/internships' },
 ];
 
 const fadeIn = keyframes`
@@ -109,15 +92,14 @@ const styles = {
 const ExperiencePage = () => {
     const theme = useTheme();
     const match = useRouteMatch();
-    const [activeTab, setActiveTab] = useState("experience");
+    const [activeTab, setActiveTab] = useState('experience');
 
     const { isLoading, data } = useFetchData(ENDPOINT.EXPERIENCEPAGE);
 
     return (
         <PageContentWrapper
             css={[styles.wrapper, { color: theme.colors.text }]}
-            loading={isLoading}
-        >
+            loading={isLoading}>
             {data.image ? (
                 <div
                     css={[
@@ -127,8 +109,7 @@ const ExperiencePage = () => {
                                 BASE_URL + data.image.formats.large.url
                             })`,
                         },
-                    ]}
-                >
+                    ]}>
                     <Fade left delay={200}>
                         <div>
                             <MainTitle>{data.title}</MainTitle>
@@ -147,8 +128,7 @@ const ExperiencePage = () => {
                 css={[
                     styles.whiteSpace,
                     { backgroundColor: theme.colors.backdrop },
-                ]}
-            >
+                ]}>
                 <Router>
                     <Fade top>
                         <div css={styles.tabList}>
@@ -171,8 +151,7 @@ const ExperiencePage = () => {
                                                   },
                                               ],
                                     ]}
-                                    onClick={() => setActiveTab(key)}
-                                >
+                                    onClick={() => setActiveTab(key)}>
                                     <Label color={theme.colors.text}>
                                         {name}
                                     </Label>
@@ -181,8 +160,7 @@ const ExperiencePage = () => {
                         </div>
                     </Fade>
                     <div
-                        css={[styles.tabContent, { color: theme.colors.text }]}
-                    >
+                        css={[styles.tabContent, { color: theme.colors.text }]}>
                         <Fade delay={300}>
                             <Switch>
                                 <Route path={`${match.path}/education`}>

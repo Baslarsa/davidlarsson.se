@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import Triangle from "../images/Triangle";
+import { css, useTheme } from '@emotion/react';
+import Triangle from '../images/Triangle';
 
 const styles = {
     wrapper: css`
@@ -29,8 +29,7 @@ const PrimaryButton = ({ onClick, title }) => {
     return (
         <div
             css={[styles.wrapper, { border: `1px solid ${theme.colors.text}` }]}
-            onClick={onClick}
-        >
+            onClick={onClick}>
             <div css={styles.triangle}>
                 <Triangle css={{ fill: theme.colors.text }} />
             </div>

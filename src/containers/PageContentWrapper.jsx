@@ -1,7 +1,6 @@
-import LoadingOverlay from "../components/global/LoadingOverlay";
+import LoadingOverlay from '../components/global/LoadingOverlay';
 /** @jsxImportSource @emotion/react */
-import { css, useTheme } from "@emotion/react";
-import { FONTSIZE } from "../constants/constants";
+import { css } from '@emotion/react';
 
 const styles = {
     wrapper: css`
