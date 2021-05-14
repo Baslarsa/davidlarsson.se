@@ -80,9 +80,7 @@ const AboutPage = () => {
                         css={[
                             styles.imageContainer,
                             {
-                                backgroundImage: `url(${
-                                    BASE_URL + data.image.formats.large.url
-                                })}`,
+                                backgroundImage: `url(${data.image.formats.large.url})}`,
                             },
                         ]}>
                         <AudioPlayer audioFile={audioFile} />

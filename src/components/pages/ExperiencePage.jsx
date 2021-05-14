@@ -105,9 +105,7 @@ const ExperiencePage = () => {
                     css={[
                         styles.imageContainer,
                         {
-                            backgroundImage: `url(${
-                                BASE_URL + data.image.formats.large.url
-                            })`,
+                            backgroundImage: `url(${data.image.formats.large.url})`,
                         },
                     ]}>
                     <Fade left delay={200}>

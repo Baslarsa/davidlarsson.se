@@ -75,7 +75,7 @@ const HomePage = () => {
                         css={[
                             styles.imageContainer,
                             {
-                                backgroundImage: `url(${BASE_URL}${data.Heroimage.formats?.large.url})`,
+                                backgroundImage: `url(${data.Heroimage.formats?.large.url})`,
                             },
                         ]}>
                         <HeroLogo

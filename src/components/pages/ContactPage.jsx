@@ -75,9 +75,7 @@ const ContactPage = () => {
                     css={[
                         styles.imageContainer,
                         {
-                            backgroundImage: `url(${
-                                BASE_URL + data.image.formats.medium.url
-                            })`,
+                            backgroundImage: `url(${data.image.formats.medium.url})`,
                         },
                     ]}>
                     <Fade delay={800}>
