@@ -4,7 +4,7 @@ import PageContentWrapper from '../../containers/PageContentWrapper';
 import HeroLogo from '../../images/davidlarsson-hero-image';
 import Fade from 'react-reveal/Fade';
 import { useFetchData } from '../../utils/useFetchData';
-import { BASE_URL, ENDPOINT } from '../../constants/constants';
+import { ENDPOINT } from '../../constants/constants';
 
 const styles = {
     imageContainer: css`
@@ -75,7 +75,7 @@ const HomePage = () => {
                         css={[
                             styles.imageContainer,
                             {
-                                backgroundImage: `url(${data.Heroimage.formats?.large.url})`,
+                                backgroundImage: `url(${data.Heroimage?.formats.large.url})`,
                             },
                         ]}>
                         <HeroLogo

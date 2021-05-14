@@ -1,8 +1,10 @@
-import { useForm } from 'react-hook-form';
+import { set, useForm } from 'react-hook-form';
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import PrimaryButton from '../PrimaryButton';
 import Fade from 'react-reveal/Fade';
+import { BASE_URL } from '../../constants/constants';
+import { useState } from 'react';
 
 const styles = {
     wrapper: css`
@@ -30,12 +32,35 @@ const styles = {
 
 const StandardForm = () => {
     const theme = useTheme();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const [isSuccess, setIsSuccess] = useState(false);
+
+    const { register, handleSubmit, formState, reset } = useForm();
+    const onSubmit = (data, e) => {
+        const requestBody = {
+            name: data.name,
+            email: data.email,
+            to: 'contact@david-larsson.se',
+            message: data.message,
+        };
+
+        var myHeaders = new Headers();
+        myHeaders.append('Content-Type', 'text/plain');
+
+        var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: JSON.stringify(requestBody),
+            redirect: 'follow',
+        };
+
+        fetch(`${BASE_URL}/emails`, requestOptions)
+            .then((response) => response.ok && setIsSuccess(true))
+            .then((response) => response.text())
+            .then((result) => console.log(result))
+            .catch((error) => console.log('error', error));
+
+        reset();
+    };
 
     return (
         <div css={styles.wrapper}>
@@ -45,19 +70,28 @@ const StandardForm = () => {
                         {...register('name', { required: true })}
                         name="name"
                         placeholder={
-                            (errors.name && 'Enter your name') || 'name'
+                            (formState.errors.name && 'Enter your name') ||
+                            'name'
                         }
                         css={[
-                            { borderBottom: `1px solid ${theme.colors.text}` },
+                            {
+                                borderBottom: formState.errors.name
+                                    ? `1px solid red`
+                                    : `1px solid ${theme.colors.text}`,
+                            },
                             { color: theme.colors.text },
                         ]}
                     />
                     <input
-                        {...register('subject', { required: true })}
-                        name="subject"
-                        placeholder="subject"
+                        {...register('email', { required: true })}
+                        name="email"
+                        placeholder="email"
                         css={[
-                            { borderBottom: `1px solid ${theme.colors.text}` },
+                            {
+                                borderBottom: formState.errors.email
+                                    ? `1px solid red`
+                                    : `1px solid ${theme.colors.text}`,
+                            },
                             { color: theme.colors.text },
                         ]}
                     />
@@ -66,15 +100,24 @@ const StandardForm = () => {
                         name="message"
                         placeholder="message"
                         css={[
-                            { borderBottom: `1px solid ${theme.colors.text}` },
+                            {
+                                borderBottom: formState.errors.message
+                                    ? `1px solid red`
+                                    : `1px solid ${theme.colors.text}`,
+                            },
                             { color: theme.colors.text },
                         ]}
                     />
-                    {errors.name && <span>You have to specify a name.</span>}
-                    {errors.subject && <span>Enter a subject.</span>}
-                    {errors.message && (
+                    {formState.errors.name && (
+                        <span>You have to specify a name.</span>
+                    )}
+                    {formState.errors.email && (
+                        <span>You have to enter an email.</span>
+                    )}
+                    {formState.errors.message && (
                         <span>You have to enter a message.</span>
                     )}
+                    {isSuccess && <span>Email has been sent!</span>}
                     <PrimaryButton
                         onClick={handleSubmit(onSubmit)}
                         title="send"

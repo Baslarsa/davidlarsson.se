@@ -7,7 +7,7 @@ import BodyBold from '../global/text/BodyBold';
 import MainTitle from '../global/text/MainTitle';
 import Fade from 'react-reveal/Fade';
 import { useFetchData } from '../../utils/useFetchData';
-import { BASE_URL, ENDPOINT } from '../../constants/constants';
+import { ENDPOINT } from '../../constants/constants';
 import LoadingOverlay from '../global/LoadingOverlay';
 
 const styles = {

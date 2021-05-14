@@ -6,7 +6,7 @@ import MainTitle from '../global/text/MainTitle';
 import audioFile from '../../constants/0emotions.mp3';
 import Fade from 'react-reveal/Fade';
 import { useFetchData } from '../../utils/useFetchData';
-import { ENDPOINT, BASE_URL } from '../../constants/constants';
+import { ENDPOINT } from '../../constants/constants';
 
 const flexContainer = keyframes`
     from {
@@ -80,7 +80,7 @@ const AboutPage = () => {
                         css={[
                             styles.imageContainer,
                             {
-                                backgroundImage: `url(${data.image.formats.large.url})}`,
+                                backgroundImage: `url(${data.image?.formats.large.url})}`,
                             },
                         ]}>
                         <AudioPlayer audioFile={audioFile} />
