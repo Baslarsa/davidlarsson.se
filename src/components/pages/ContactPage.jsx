@@ -49,6 +49,10 @@ const styles = {
             width: 100%;
         }
     `,
+    text: css`
+        padding: 1rem;
+        display: inline-block;
+    `,
 };
 
 const ContactPage = () => {
@@ -79,29 +83,38 @@ const ContactPage = () => {
                         },
                     ]}>
                     <Fade delay={800}>
-                        <Body>
-                            <strong>name:</strong>
+                        <div
+                            css={[
+                                styles.text,
+                                {
+                                    backgroundColor:
+                                        theme.colors.black_transparent,
+                                },
+                            ]}>
+                            <Body>
+                                <strong>name:</strong>
+                                <br />
+                                {data.contact.name}
+                            </Body>
                             <br />
-                            {data.contact.name}
-                        </Body>
-                        <br />
-                        <Body>
-                            <strong>address:</strong>
+                            <Body>
+                                <strong>address:</strong>
+                                <br />
+                                {data.contact.address}
+                                <br />
+                                {`${data.contact.zip}, ${data.contact.city}`}
+                            </Body>
                             <br />
-                            {data.contact.address}
+                            <Body>
+                                <strong>email:</strong> <br />
+                                {data.contact.email}
+                            </Body>
                             <br />
-                            {`${data.contact.zip}, ${data.contact.city}`}
-                        </Body>
-                        <br />
-                        <Body>
-                            <strong>email:</strong> <br />
-                            {data.contact.email}
-                        </Body>
-                        <br />
-                        <Body>
-                            <strong>phone:</strong> <br />
-                            {data.contact.phone}
-                        </Body>
+                            <Body>
+                                <strong>phone:</strong> <br />
+                                {data.contact.phone}
+                            </Body>
+                        </div>
                     </Fade>
 
                     <MainTitle css={styles.mainTitle}>

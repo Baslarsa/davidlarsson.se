@@ -87,6 +87,9 @@ const styles = {
         width: 100%;
         height: 100%;
     `,
+    textBox: css`
+        padding: 1rem;
+    `,
 };
 
 const ExperiencePage = () => {
@@ -114,7 +117,14 @@ const ExperiencePage = () => {
                         </div>
                     </Fade>
                     <Fade left delay={600}>
-                        <div>
+                        <div
+                            css={[
+                                styles.textBox,
+                                {
+                                    backgroundColor:
+                                        theme.colors.black_transparent,
+                                },
+                            ]}>
                             <p>{data.description}</p>
                         </div>
                     </Fade>
