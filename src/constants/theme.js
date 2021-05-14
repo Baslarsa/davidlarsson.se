@@ -6,7 +6,7 @@ export const darkTheme = {
         white: 'white',
         black: 'black',
         primary: '#2493D1',
-        backdrop: '#141414',
+        backdrop: '#0D0D0D',
     },
 };
 export const lightTheme = {
