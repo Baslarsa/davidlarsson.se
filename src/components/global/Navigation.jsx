@@ -21,6 +21,8 @@ const styles = {
         }
         @media screen and (max-width: 1024px) {
             flex-direction: row;
+            justify-content: flex-end;
+            padding: 0 1rem 0 0;
         }
     `,
     navIconActive: css`

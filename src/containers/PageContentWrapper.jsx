@@ -13,6 +13,8 @@ const styles = {
         @media screen and (max-width: 1024px) {
             flex-direction: column-reverse;
             height: auto;
+            min-height: 40vh;
+            width: 100vw;
             padding: 0;
         }
     `,

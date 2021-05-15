@@ -10,7 +10,6 @@ export const useFetchData = (query) => {
 
         const fetchData = async () => {
             setIsLoading(true);
-
             const response = await axios(query);
             setData(response.data);
             setIsLoading(false);

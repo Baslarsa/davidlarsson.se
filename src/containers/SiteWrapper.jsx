@@ -7,6 +7,7 @@ import { Icon } from '../icons';
 import { Fade } from 'react-reveal';
 import { useFetchData } from '../utils/useFetchData';
 import { ENDPOINT } from '../constants/constants';
+import useWindowSize from '../utils/useWindowSize';
 
 const SocialIcon = ({ name, link, color }) => {
     switch (name) {
@@ -29,6 +30,7 @@ const SocialIcon = ({ name, link, color }) => {
 
 const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
     const theme = useTheme();
+    const { width, height } = useWindowSize();
 
     const styles = {
         wrapper: css`
@@ -71,6 +73,9 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
         `,
         siteLogo: css`
             padding: 0.5rem;
+            @media screen and (max-width: 1024px) {
+                padding: 0.5rem 1rem;
+            }
         `,
         socialIcon: css`
             fill: ${theme.colors.text};
@@ -78,22 +83,25 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
     };
 
     const { data } = useFetchData(ENDPOINT.SOCIALMEDIA);
+    const isMobile = width <= 1024;
 
     return (
         <>
             {data && (
                 <div>
-                    <div css={styles.socialWrapper}>
-                        {data.map((link) => (
-                            <Fade right key={link.name}>
-                                <SocialIcon
-                                    name={link.name}
-                                    link={link.link}
-                                    color={theme.colors.text}
-                                />
-                            </Fade>
-                        ))}
-                    </div>
+                    {isMobile && (
+                        <div css={styles.socialWrapper}>
+                            {data.map((link) => (
+                                <Fade right key={link.name}>
+                                    <SocialIcon
+                                        name={link.name}
+                                        link={link.link}
+                                        color={theme.colors.text}
+                                    />
+                                </Fade>
+                            ))}
+                        </div>
+                    )}
                     <div
                         css={[
                             { backgroundColor: theme.colors.background },
@@ -109,11 +117,15 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
                             </a>
                             <Fade left>
                                 <Navigation />
-                                <DarkModeToggle
-                                    onChange={onThemeChange}
-                                    toggleState={isDarkMode}
-                                />
                             </Fade>
+                            {!isMobile && (
+                                <Fade left>
+                                    <DarkModeToggle
+                                        onChange={onThemeChange}
+                                        toggleState={isDarkMode}
+                                    />
+                                </Fade>
+                            )}
                         </div>
                         <div css={styles.content}>{children}</div>
                     </div>
