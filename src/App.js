@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import "./App.scss";
-import Routes from "./components/global/Routes";
-import SiteWrapper from "./containers/SiteWrapper";
-import { ThemeProvider } from "@emotion/react";
-import { darkTheme, lightTheme } from "./constants/theme";
+import React, { useCallback, useEffect, useState } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import './App.scss';
+import Routes from './components/global/Routes';
+import SiteWrapper from './containers/SiteWrapper';
+import { ThemeProvider } from '@emotion/react';
+import { darkTheme, lightTheme } from './constants/theme';
 
 function App() {
-    let darkModeStorageState = localStorage.getItem("DARKMODE") === "true";
+    let darkModeStorageState = localStorage.getItem('DARKMODE') === 'true';
     const [isDarkMode, setIsDarkMode] = useState(darkModeStorageState);
 
     const handleOnClick = useCallback(() => {
@@ -16,7 +16,7 @@ function App() {
 
     useEffect(() => {
         const updateLocalStorage = () => {
-            localStorage.setItem("DARKMODE", isDarkMode);
+            localStorage.setItem('DARKMODE', isDarkMode);
         };
         updateLocalStorage();
     }, [isDarkMode]);
@@ -26,8 +26,7 @@ function App() {
             <Router>
                 <SiteWrapper
                     onThemeChange={handleOnClick}
-                    isDarkMode={isDarkMode}
-                >
+                    isDarkMode={isDarkMode}>
                     <Routes />
                 </SiteWrapper>
             </Router>
