@@ -45,6 +45,7 @@ const styles = {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        text-align: center;
         @media screen and (max-width: 1024px) {
             width: 100%;
         }
