@@ -89,7 +89,7 @@ const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
         <>
             {data && (
                 <div>
-                    {isMobile && (
+                    {!isMobile && (
                         <div css={styles.socialWrapper}>
                             {data.map((link) => (
                                 <Fade right key={link.name}>
