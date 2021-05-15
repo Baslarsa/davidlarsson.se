@@ -2,8 +2,8 @@ const fetch = require('node-fetch');
 
 //This is to keep the free heroku deployment dyno to not sleep after 30 mins.
 console.log('running');
-const wakeUpDyno = (url, interval = 1, callback) => {
-    const milliseconds = interval * 5000;
+const wakeUpDyno = (url, interval = 25, callback) => {
+    const milliseconds = interval * 60000;
     setTimeout(() => {
         try {
             console.log(`setTimeout called.`);
