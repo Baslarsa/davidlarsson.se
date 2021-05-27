@@ -81,6 +81,10 @@ const ExpandableList = ({ list, title }) => {
     return (
         <div css={styles.wrapper}>
             <Title>{title}</Title>
+            <Body>
+                Click the arrow to expand the row and read more about the
+                experience you're curious about.
+            </Body>
             {tabData ? (
                 <div css={styles.rowWrap}>
                     {tabData?.map((item) => (

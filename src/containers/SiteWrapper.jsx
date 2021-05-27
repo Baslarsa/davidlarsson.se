@@ -30,7 +30,7 @@ const SocialIcon = ({ name, link, color }) => {
 
 const SiteWrapper = ({ children, onThemeChange, isDarkMode }) => {
     const theme = useTheme();
-    const { width, height } = useWindowSize();
+    const { width } = useWindowSize();
 
     const styles = {
         wrapper: css`

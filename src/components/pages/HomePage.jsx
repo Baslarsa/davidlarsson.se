@@ -35,7 +35,7 @@ const styles = {
     `,
     heroLogo: css`
         position: absolute;
-        left: 0px;
+        left: -3px;
         height: 100%;
     `,
     description: css`

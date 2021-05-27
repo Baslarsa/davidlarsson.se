@@ -1,4 +1,4 @@
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 /** @jsxImportSource @emotion/react */
 import { css, useTheme } from '@emotion/react';
 import PrimaryButton from '../PrimaryButton';
