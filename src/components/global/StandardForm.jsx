@@ -39,7 +39,6 @@ const StandardForm = () => {
         const requestBody = {
             name: data.name,
             email: data.email,
-            to: 'contact@david-larsson.se',
             message: data.message,
         };
 
